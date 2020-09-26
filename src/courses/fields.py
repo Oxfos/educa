@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.exeptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 class OrderField(models.PositiveIntegerField):
     """OrderField model field class subclassed from PositiveIntegerField."""
@@ -17,7 +17,7 @@ class OrderField(models.PositiveIntegerField):
                     qs = qs.filter(**query)
                     # get the order of the last item
                 last_item = qs.latest(self.attname)
-                value = last_item + 1
+                value = getattr(last_item, self.attname) + 1
             except ObjectDoesNotExist:
                 value = 0
             setattr(model_instance, self.attname, value)
