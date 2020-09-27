@@ -45,15 +45,15 @@ class ManageCourseListView(OwnerCourseMixin, ListView):
 
 
 class CourseCreateView(PermissionRequiredMixin, OwnerCourseEditMixin, CreateView):
-    premission_required = 'courses.add_course'
+    permission_required = 'courses.add_course'
 
 
 class CourseUpdateView(PermissionRequiredMixin, OwnerCourseEditMixin, UpdateView):
-    premission_required = 'courses.change_course'
+    permission_required = 'courses.change_course'
 
 
 class CourseDeleteView(PermissionRequiredMixin, OwnerCourseEditMixin, DeleteView):
     template_name = 'courses/manage/course/delete.html'
     success_url = reverse_lazy('manage_course_list')
-    premission_required = 'courses.delete_course'
+    permission_required = 'courses.delete_course'
 
